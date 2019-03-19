@@ -25,6 +25,11 @@
 	border: 1px solid #d9edf7;
 }
 
+#components-container {
+	/* border-left: 1px dashed rgb(212, 212, 212); */
+	padding: 10px 20px;
+}
+
 /* RANDOM BOOTSTAP FIX BECAUSE INPUT HEIGHT IS SET AT 30px ?!?! */
 input[type=text] {
 	height: auto;
