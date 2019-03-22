@@ -26,6 +26,23 @@
 </head>
 
 <body>
+	<!-- Navbar with brand, column options and view HTML btn -->
+	<nav class="navbar navbar-default navbar-fixed" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">SharePoint</a>
+		</div>
+		<form class="navbar-form navbar-left">
+			<div class="form-group">
+				<select class="form-control" id="n-columns">
+					<option value="1">1 Column</option>
+					<option value="2">2 Columns</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary" data-clipboard-text="testing" id="copy-to-clipboard">View
+				HTML</button>
+		</form>
+	</nav>
 	<div class="row-fluid">
 		<div class="span10 offset1">
 			<div class="row-fluid">
@@ -99,7 +116,7 @@
 							<div class="controls">
 								<label class="checkbox" for="checkbox_1">
 									<input type="checkbox" name="checkbox" id="checkbox_1">
-									Option 
+									Option 1
 								</label>
 								<label class="checkbox" for="checkbox_2">
 									<input type="checkbox" name="checkbox" id="checkbox_2">
@@ -129,35 +146,37 @@
 								</label>
 							</div>
 						</div>
-						
+
 						<div class="control-group component" data-type="date">
-							<label class="control-label" for="date">Start Date</label>
+							<label class="control-label" for="date">Date Input</label>
 							<div class="controls">
-								<input type="date" id="date" name="startDate">
+								<input type="date" id="date" name="Date">
 							</div>
 						</div>
 
-						<div class="control-group component" data-type="date">
-							<label class="control-label" for="date">End Date</label>
+						<div class="control-group component" data-type="file">
+							<label class="control-label" for="file-input">File Input</label>
 							<div class="controls">
-								<input type="date" id="date" name="endDate">
+								<input type="file" id="file" name="file">
 							</div>
 						</div>
 
 						<div class="control-group component" data-type="static_text">
-							<label class="control-label">Static Text<br></label>
-							<div class="controls">Space for instructions, guidelines, etc.
+							<label class="control-label">Plain Text<br></label>
+							<div class="controls" style="display: block;
+							font: 1rem 'Fira Sans', sans-serif; padding-top: 10px;">You can use this component to display any amount of
+								plain text that is not editable by the user.
 							</div>
 						</div>
 
-						<div class="control-group component" data-type="static_text">
-							<label class="control-label">Text with checkbox<br></label>
-							<div class="prependedtext">
-								<div class="input-group-text"></div>
-									<input type="checkbox" aria-label="Checkbox for following text input">
-								</div>
-								<div class="controls">Space for terms and conditions, etc.
-								</div>
+						<div class="control-group component" data-type="checkbox">
+							<label class="control-label">Terms & Conditions</label>
+							<div class="controls">
+								<label class="checkbox" for="checkbox_text">
+									<input type="checkbox" name="checkbox" id="checkbox_text">
+									You can use this component to obtain consent to your Terms and Conditions agreement
+									(or any other agreement that you present to users).
+								</label>
 							</div>
 						</div>
 
@@ -172,6 +191,7 @@
 		</div>
 	</div>
 
+	<!-- Modal Options -->
 	<div class="modal fade" id="options_modal">
 		<div class="modal-header">
 			<a class="close" data-dismiss="modal">&times;</a>
@@ -353,7 +373,7 @@
 	</div>
 
 	<!-- Date Options -->
-	<!-- <div class="options options-date form-horizontal">
+	<div class="options options-date form-horizontal">
 		<div class="control-group">
 			<label class="control-label">Name</label>
 			<div class="controls">
@@ -367,7 +387,24 @@
 				<input type="text" class="options_date_label" placeholder="Label">
 			</div>
 		</div>
-	</div> -->
+	</div>
+
+	<!-- File Input Options -->
+	<div class="options options-file form-horizontal">
+		<div class="control-group">
+			<label class="control-label">Name</label>
+			<div class="controls">
+				<input type="text" class="options_file_name" placeholder="Name">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Label</label>
+			<div class="controls">
+				<input type="text" class="options_file_label" placeholder="Label">
+			</div>
+		</div>
+	</div>
 
 	<!-- Static Text Options -->
 	<div class="options options-static_text form-horizontal">
@@ -425,6 +462,7 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 
 </html>

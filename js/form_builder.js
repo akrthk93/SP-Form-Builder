@@ -41,7 +41,7 @@
 // 4. When options are saved
 //		a. Call form_builder.type.set() to save options
 
-$(function() {
+$(function () {
 	// element options object
 	var form_builder = {
 		// selected element reference
@@ -57,58 +57,58 @@ $(function() {
 		delimeter: '=',
 
 		// set current element
-		setElement: function(el) {
+		setElement: function (el) {
 			this.el = el;
 		},
 
 		// get current element
-		getElement: function() {
+		getElement: function () {
 			return this.el;
 		},
 
 		// clean value to be used in name
 		// TODO: Rmove non-alphanumeric characters
-		cleanName: function(name) {
-			if(name===undefined || name.length===0) return '';
+		cleanName: function (name) {
+			if (name === undefined || name.length === 0) return '';
 
 			return name
-					.trim()
-					.replace(/ /g, '_')
-					// .replace(/[^A-Za-z0-9]/, '')
-					.toLowerCase();
+				.trim()
+				.replace(/ /g, '_')
+				// .replace(/[^A-Za-z0-9]/, '')
+				.toLowerCase();
 		},
 
-		cleanContent: function(content) {
+		cleanContent: function (content) {
 			return content
-					.replace(/\t/, '')
-					.replace(/ ui-draggable| element/gi, '')
-					.replace(/<div class="close">.<\/div>/g, '')
-					.replace(/ data-(.+)="(.+)"/g, '');
+				.replace(/\t/, '')
+				.replace(/ ui-draggable| element/gi, '')
+				.replace(/<div class="close">.<\/div>/g, '')
+				.replace(/ data-(.+)="(.+)"/g, '');
 		},
 
-		updateSource: function() {
-			var content =	"<form method=\""+this.method+"\" " +
-							"action=\""+this.action+"\" " +
-							"class=\"form-horizontal\">\n" +
-							$("#content").html() +
-							"\n</form>";
+		updateSource: function () {
+			var content = "<form method=\"" + this.method + "\" " +
+				"action=\"" + this.action + "\" " +
+				"class=\"form-horizontal\">\n" +
+				$("#content").html() +
+				"\n</form>";
 
 			source.setValue(this.cleanContent(content));
 
 			source.autoFormatRange(
 				{ line: 0, ch: 0 },
-				{ line: source.lastLine()+1, ch: 0 }
+				{ line: source.lastLine() + 1, ch: 0 }
 			);
 		},
 
-		addComponent: function(component) {
+		addComponent: function (component) {
 			component
-			.clone()
-			.removeClass('component')
-			.addClass('element')
-			.removeAttr('id')
-			.prepend('<div class="close">&times;</div>')
-			.appendTo("#content");
+				.clone()
+				.removeClass('component')
+				.addClass('element')
+				.removeAttr('id')
+				.prepend('<div class="close">&times;</div>')
+				.appendTo("#content");
 
 			$("#options_modal").modal('hide');
 
@@ -121,21 +121,21 @@ $(function() {
 			prefix: '.options_title_',
 
 			// get title options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement(),
 					legend = el.find('legend');
 
-				$(this.prefix+'name')
-				.val(legend.text())
-				.focus();
+				$(this.prefix + 'name')
+					.val(legend.text())
+					.focus();
 			},
 
 			// set title options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					legend = el.find('legend');
 
-				legend.text($(this.prefix+'name').val());
+				legend.text($(this.prefix + 'name').val());
 			}
 		},
 
@@ -145,26 +145,26 @@ $(function() {
 			prefix: '.options_text_',
 
 			// get text options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement();
 
-				$(this.prefix+'name').val('');
-				$(this.prefix+'label').val(el.find('label').text());
-				$(this.prefix+'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
 			},
 
 			// set text options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					input = el.find('input[type=text]'),
 					label = el.find('label'),
-					name = form_builder.cleanName($(this.prefix+'name').val());
+					name = form_builder.cleanName($(this.prefix + 'name').val());
 
 				input.attr('name', name);
 
-				label.text($(this.prefix+'label').val()).attr('for', name);
+				label.text($(this.prefix + 'label').val()).attr('for', name);
 
-				input.attr('placeholder', $(this.prefix+'placeholder').val()).attr('id', name);
+				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
 			}
 		},
 
@@ -174,23 +174,23 @@ $(function() {
 			prefix: '.options_textarea_',
 
 			// get textarea options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement();
 
-				$(this.prefix+'name').val('');
-				$(this.prefix+'label').val(el.find('label').text());
-				$(this.prefix+'placeholder').val(el.find('textarea').attr('placeholder'));
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'placeholder').val(el.find('textarea').attr('placeholder'));
 			},
 
 			// set textarea options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					textarea = el.find('textarea'),
 					label = el.find('label');
 
-				textarea.attr('name', form_builder.cleanName($(this.prefix+'name').val()));
-				label.text($(this.prefix+'label').val());
-				textarea.attr('placeholder', $(this.prefix+'placeholder').val());
+				textarea.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
+				label.text($(this.prefix + 'label').val());
+				textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
 			}
 		},
 
@@ -200,37 +200,37 @@ $(function() {
 			prefix: '.options_select_basic_',
 
 			// get basic select options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement(),
 					list_options = '',
 					split = form_builder.delimeter;
 
 				// loop through each select option
-				el.find('select > option').each(function(key, val) {
+				el.find('select > option').each(function (key, val) {
 					// if value and display text are equal
 					// dont bother showing value
 					var val_and_split = form_builder.cleanName($(val).text()) == $(val).val() ?
-										'' :
-										($(val).val() + split);
+						'' :
+						($(val).val() + split);
 
 					// add option to list
-					list_options += val_and_split + $(val).text()+"\n";
+					list_options += val_and_split + $(val).text() + "\n";
 				});
 
-				$(this.prefix+'name').val('');
-				$(this.prefix+'label').val(el.find('label').text());
-				$(this.prefix+'options').val(list_options);
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'options').val(list_options);
 			},
 
 			// set basic select options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					select = el.find('select'),
 					label = el.find('label'),
 					split = form_builder.delimeter,
 
 					// textarea options
-					options_blob = $(this.prefix+'options').val(),
+					options_blob = $(this.prefix + 'options').val(),
 
 					// split options by line break
 					select_options = options_blob.replace(/\r\n/, "\n").split("\n"),
@@ -239,21 +239,21 @@ $(function() {
 					list_options = "\n";
 
 				// loop through each option
-				$.each(select_options, function(key, val) {
-					if(val.length>0) {
+				$.each(select_options, function (key, val) {
+					if (val.length > 0) {
 						// if delimiter found, split val into array value -> display
-						if(val.indexOf(split) !== -1) {
+						if (val.indexOf(split) !== -1) {
 							var opt = val.split(split);
 
-							list_options += "<option value=\""+opt[0]+"\">"+opt[1]+"</option>\n";
+							list_options += "<option value=\"" + opt[0] + "\">" + opt[1] + "</option>\n";
 						} else {
-							list_options += "<option value=\""+form_builder.cleanName(val)+"\">"+val+"</option>\n";
+							list_options += "<option value=\"" + form_builder.cleanName(val) + "\">" + val + "</option>\n";
 						}
 					}
 				});
 
-				select.attr('name', form_builder.cleanName($(this.prefix+'name').val()));
-				label.text($(this.prefix+'label').val());
+				select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
+				label.text($(this.prefix + 'label').val());
 				select.html(list_options);
 			}
 		},
@@ -264,37 +264,37 @@ $(function() {
 			prefix: '.options_select_multiple_',
 
 			// get multiple select options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement(),
 					list_options = '',
 					split = form_builder.delimeter;
 
 				// loop through each select option
-				el.find('select > option').each(function(key, val) {
+				el.find('select > option').each(function (key, val) {
 					// if value and display text are equal
 					// dont bother showing value
 					var val_and_split = form_builder.cleanName($(val).text()) == $(val).val() ?
-										'' :
-										($(val).val() + split);
+						'' :
+						($(val).val() + split);
 
 					// add option to list
-					list_options += val_and_split + $(val).text()+"\n";
+					list_options += val_and_split + $(val).text() + "\n";
 				});
 
-				$(this.prefix+'name').val('');
-				$(this.prefix+'label').val(el.find('label').text());
-				$(this.prefix+'options').val(list_options);
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'options').val(list_options);
 			},
 
 			// set multiple select options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					select = el.find('select'),
 					label = el.find('label'),
 					split = form_builder.delimeter,
 
 					// textarea options
-					options_blob = $(this.prefix+'options').val(),
+					options_blob = $(this.prefix + 'options').val(),
 
 					// split options by line break
 					select_options = options_blob.replace(/\r\n/, "\n").split("\n"),
@@ -303,21 +303,21 @@ $(function() {
 					list_options = "\n";
 
 				// loop through each option
-				$.each(select_options, function(key, val) {
-					if(val.length>0) {
+				$.each(select_options, function (key, val) {
+					if (val.length > 0) {
 						// if delimiter found, split val into array value -> display
-						if(val.indexOf(split) !== -1) {
+						if (val.indexOf(split) !== -1) {
 							var opt = val.split(split);
 
-							list_options += "<option value=\""+opt[0]+"\">"+opt[1]+"</option>\n";
+							list_options += "<option value=\"" + opt[0] + "\">" + opt[1] + "</option>\n";
 						} else {
-							list_options += "<option value=\""+form_builder.cleanName(val)+"\">"+val+"</option>\n";
+							list_options += "<option value=\"" + form_builder.cleanName(val) + "\">" + val + "</option>\n";
 						}
 					}
 				});
 
-				select.attr('name', form_builder.cleanName($(this.prefix+'name').val())+'[]');
-				label.text($(this.prefix+'label').val());
+				select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
+				label.text($(this.prefix + 'label').val());
 				select.html(list_options);
 			}
 		},
@@ -328,71 +328,71 @@ $(function() {
 			prefix: '.options_checkbox_',
 
 			// get checkbox options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement(),
 					list_options = '',
 					split = form_builder.delimeter;
 
 				// loop through each select option
-				el.find('input[type=checkbox]').each(function(key, val) {
+				el.find('input[type=checkbox]').each(function (key, val) {
 					// if checkbox has value that isn't just "on", show it
-					var val_and_split = $(this).val().length>0 && $(this).val()!=='on' ?
-										$(this).val()+split :
-										'';
+					var val_and_split = $(this).val().length > 0 && $(this).val() !== 'on' ?
+						$(this).val() + split :
+						'';
 
-					list_options += val_and_split + $(this).closest('label').text().trim()+"\n";
+					list_options += val_and_split + $(this).closest('label').text().trim() + "\n";
 				});
 
-				$(this.prefix+'name').val('');
-				$(this.prefix+'label').val(el.find('label:first').text());
-				$(this.prefix+'options').val(list_options);
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label:first').text());
+				$(this.prefix + 'options').val(list_options);
 			},
 
 			// set checkbox options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					label = el.find('label:first'),
 					split = form_builder.delimeter,
 
 					// textarea options
-					options_blob = $(this.prefix+'options').val(),
+					options_blob = $(this.prefix + 'options').val(),
 
 					// split options by line break
 					checkbox_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
 					// element name
-					name = form_builder.cleanName($(this.prefix+'name').val()),
+					name = form_builder.cleanName($(this.prefix + 'name').val()),
 
 					// options buffer
 					list_options = "\n";
 
 				// loop through each option
-				$.each(checkbox_options, function(key, val) {
-					var id = name+'_'+key;
+				$.each(checkbox_options, function (key, val) {
+					var id = name + '_' + key;
 
-					if(val.length>0) {
+					if (val.length > 0) {
 						// if delimiter found, split val into array value -> display
-						if(val.indexOf(split) !== -1) {
+						if (val.indexOf(split) !== -1) {
 							var opt = val.split(split);
 
-							list_options += "<label class=\"checkbox\" for=\""+id+"\">\n" +
-											"<input type=\"checkbox\" name=\"" +name +"\" " +
-											"id=\""+id+"\" " +
-											"value=\""+opt[0]+"\">\n" +
-											opt[1]+"\n" +
-											"</label>\n";
+							list_options += "<label class=\"checkbox\" for=\"" + id + "\">\n" +
+								"<input type=\"checkbox\" name=\"" + name + "\" " +
+								"id=\"" + id + "\" " +
+								"value=\"" + opt[0] + "\">\n" +
+								opt[1] + "\n" +
+								"</label>\n";
 						} else {
-							list_options += "<label class=\"checkbox\" for=\""+id+"\">\n" +
-											"<input type=\"checkbox\" name=\"" +name +"\" " +
-											"id=\""+id+"\" " +
-											"value=\""+form_builder.cleanName(val)+"\">\n" +
-											val+"\n" +
-											"</label>\n";
+							list_options += "<label class=\"checkbox\" for=\"" + id + "\">\n" +
+								"<input type=\"checkbox\" name=\"" + name + "\" " +
+								"id=\"" + id + "\" " +
+								"value=\"" + form_builder.cleanName(val) + "\">\n" +
+								val + "\n" +
+								"</label>\n";
 						}
 					}
 				});
 
-				label.text($(this.prefix+'label').val());
+				label.text($(this.prefix + 'label').val());
 				el.find('.controls').html(list_options);
 			}
 		},
@@ -403,72 +403,130 @@ $(function() {
 			prefix: '.options_radio_',
 
 			// get radio buttons options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement(),
 					list_options = '',
 					split = form_builder.delimeter;
 
 				// loop through each select option
-				el.find('input[type=radio]').each(function(key, val) {
+				el.find('input[type=radio]').each(function (key, val) {
 					// if radio has value that isn't just "on", show it
-					var val_and_split = $(this).val().length>0 && $(this).val()!=='on' ?
-										$(this).val()+split :
-										'';
+					var val_and_split = $(this).val().length > 0 && $(this).val() !== 'on' ?
+						$(this).val() + split :
+						'';
 
-					list_options += val_and_split + $(this).closest('label').text().trim()+"\n";
+					list_options += val_and_split + $(this).closest('label').text().trim() + "\n";
 				});
 
-				$(this.prefix+'name').val('');
-				$(this.prefix+'label').val(el.find('label:first').text());
-				$(this.prefix+'options').val(list_options);
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label:first').text());
+				$(this.prefix + 'options').val(list_options);
 			},
 
 			// set radio button options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					label = el.find('label:first'),
 					split = form_builder.delimeter,
 
 					// textarea options
-					options_blob = $(this.prefix+'options').val(),
+					options_blob = $(this.prefix + 'options').val(),
 
 					// split options by line break
 					radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
 					// element name
-					name = form_builder.cleanName($(this.prefix+'name').val()),
+					name = form_builder.cleanName($(this.prefix + 'name').val()),
 
 					// options buffer
 					list_options = "\n";
 
 				// loop through each option
-				$.each(radio_options, function(key, val) {
-					var id = name+'_'+key;
+				$.each(radio_options, function (key, val) {
+					var id = name + '_' + key;
 
-					if(val.length>0) {
+					if (val.length > 0) {
 						// if delimiter found, split val into array value -> display
-						if(val.indexOf(split) !== -1) {
+						if (val.indexOf(split) !== -1) {
 							var opt = val.split(split);
 
-							list_options += "<label class=\"radio\" for=\""+id+"\">\n" +
-											"<input type=\"radio\" name=\"" +name +"\" " +
-											"id=\""+id+"\" " +
-											"value=\""+opt[0]+"\">\n" +
-											opt[1]+"\n" +
-											"</label>\n";
+							list_options += "<label class=\"radio\" for=\"" + id + "\">\n" +
+								"<input type=\"radio\" name=\"" + name + "\" " +
+								"id=\"" + id + "\" " +
+								"value=\"" + opt[0] + "\">\n" +
+								opt[1] + "\n" +
+								"</label>\n";
 						} else {
-							list_options += "<label class=\"radio\" for=\""+id+"\">\n" +
-											"<input type=\"radio\" name=\"" +name +"\" " +
-											"id=\""+id+"\" " +
-											"value=\""+form_builder.cleanName(val)+"\">\n" +
-											val+"\n" +
-											"</label>\n";
+							list_options += "<label class=\"radio\" for=\"" + id + "\">\n" +
+								"<input type=\"radio\" name=\"" + name + "\" " +
+								"id=\"" + id + "\" " +
+								"value=\"" + form_builder.cleanName(val) + "\">\n" +
+								val + "\n" +
+								"</label>\n";
 						}
 					}
 				});
 
-				label.text($(this.prefix+'label').val());
+				label.text($(this.prefix + 'label').val());
 				el.find('.controls').html(list_options);
+			}
+		},
+
+		// date options
+		date: {
+			// options class prefix
+			prefix: '.options_date_',
+
+			// get date options
+			get: function () {
+				var el = form_builder.getElement();
+
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+			},
+
+			// set date options
+			set: function () {
+				var el = form_builder.getElement(),
+					input = el.find('input[type=text]'),
+					label = el.find('label'),
+					name = form_builder.cleanName($(this.prefix + 'name').val());
+
+				input.attr('name', name);
+
+				label.text($(this.prefix + 'label').val()).attr('for', name);
+
+				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
+			}
+		},
+
+		// file options
+		file: {
+			// options class prefix
+			prefix: '.options_file_',
+
+			// get file options
+			get: function () {
+				var el = form_builder.getElement();
+
+				$(this.prefix + 'name').val('');
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+			},
+
+			// set file options
+			set: function () {
+				var el = form_builder.getElement(),
+					input = el.find('input[type=text]'),
+					label = el.find('label'),
+					name = form_builder.cleanName($(this.prefix + 'name').val());
+
+				input.attr('name', name);
+
+				label.text($(this.prefix + 'label').val()).attr('for', name);
+
+				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
 			}
 		},
 
@@ -476,18 +534,18 @@ $(function() {
 		static_text: {
 			prefix: '.options_static_text_',
 
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement();
 
-				$(this.prefix+'label').val(el.find('label').text());
-				$(this.prefix+'text').val(el.find('.controls').html().trim());
+				$(this.prefix + 'label').val(el.find('label').text());
+				$(this.prefix + 'text').val(el.find('.controls').html().trim());
 			},
 
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement();
 
-				el.find('label').text($(this.prefix+'label').val());
-				el.find('.controls').html($(this.prefix+'text').val());
+				el.find('label').text($(this.prefix + 'label').val());
+				el.find('.controls').html($(this.prefix + 'text').val());
 			}
 		},
 
@@ -497,46 +555,46 @@ $(function() {
 			prefix: '.options_submit_',
 
 			// get submit button options
-			get: function() {
+			get: function () {
 				var el = form_builder.getElement();
 
 				// submit button text
-				$(this.prefix+'label').val(el.find('button[type=submit]').text());
+				$(this.prefix + 'label').val(el.find('button[type=submit]').text());
 
 				// get cancel button visibility
-				if(el.find('button[type=button]').hasClass('hide')) {
-					$(this.prefix+'show_cancel').val(0);
+				if (el.find('button[type=button]').hasClass('hide')) {
+					$(this.prefix + 'show_cancel').val(0);
 				} else {
-					$(this.prefix+'show_cancel').val(1);
+					$(this.prefix + 'show_cancel').val(1);
 				}
 
 				// get form_builder variables for method & action
-				$(this.prefix+'method').val(form_builder.method);
-				$(this.prefix+'action').val(form_builder.action);
+				$(this.prefix + 'method').val(form_builder.method);
+				$(this.prefix + 'action').val(form_builder.action);
 			},
 
 			// set submit button options
-			set: function() {
+			set: function () {
 				var el = form_builder.getElement(),
 					cancel = el.find('button[type=button]');
 
-				el.find('button[type=submit]').text($(this.prefix+'label').val());
+				el.find('button[type=submit]').text($(this.prefix + 'label').val());
 
 				// hide or show cancel button
 				// TODO: Remove & add cancel button instead of just making it invisible
-				if($(this.prefix+'show_cancel').val()==1) {
-					if(cancel.hasClass('hide')) {
+				if ($(this.prefix + 'show_cancel').val() == 1) {
+					if (cancel.hasClass('hide')) {
 						cancel.removeClass('hide');
 					}
 				} else {
-					if(! cancel.hasClass('hide')) {
+					if (!cancel.hasClass('hide')) {
 						cancel.addClass('hide');
 					}
 				}
 
 				// set form_builder variables for method & action
-				form_builder.method = $(this.prefix+'method').val();
-				form_builder.action = $(this.prefix+'action').val();
+				form_builder.method = $(this.prefix + 'method').val();
+				form_builder.action = $(this.prefix + 'action').val();
 			}
 		}
 	};
@@ -544,20 +602,20 @@ $(function() {
 	// components are useable form elements that can be dragged or clicked
 	// to add them to the form
 	$(".component")
-	.draggable({
-		helper: function(e) {
-			return $(this).clone().addClass('component-drag');
-		}
-	})
-	.click(function(e) {
-		form_builder.addComponent($(this));
-	});
+		.draggable({
+			helper: function (e) {
+				return $(this).clone().addClass('component-drag');
+			}
+		})
+		.click(function (e) {
+			form_builder.addComponent($(this));
+		});
 
 	// remove element when clicking close button
-	$(document).on('click', '.element > .close', function(e) {
+	$(document).on('click', '.element > .close', function (e) {
 		e.stopPropagation();
 
-		$(this).parent().fadeOut('normal', function() {
+		$(this).parent().fadeOut('normal', function () {
 			$(this).remove();
 		});
 	});
@@ -565,11 +623,11 @@ $(function() {
 	// elements are components that have been added to the form
 	// clicking elements brings up customizable options in a
 	// modal window
-	$(document).on('click', '.element', function() {
+	$(document).on('click', '.element', function () {
 		var $modal = $("#options_modal"),
 			content = $modal.find('.modal-body'),
 			type = $(this).data('type'),
-			option_box = $(".options-"+type);
+			option_box = $(".options-" + type);
 
 		// set options modal type
 		$modal.data('type', type);
@@ -591,8 +649,22 @@ $(function() {
 		$modal.modal('show');
 	});
 
+	// Get the input field
+	var input = document.getElementById("options_modal");
+
+	// Execute a function when the user releases a key on the keyboard
+	input.addEventListener("keyup", function (event) {
+		// Number 13 is the "Enter" key on the keyboard
+		if (event.keyCode === 13) {
+			// Cancel the default action, if needed
+			event.preventDefault();
+			// Trigger the button element with a click
+			$("#save_options").click();
+		}
+	});
+
 	// options modal save button
-	$("#save_options").click(function() {
+	$("#save_options").click(function () {
 		var $modal = $("#options_modal"),
 			content = $modal.find('.modal-body'),
 			type = $modal.data('type');
@@ -604,12 +676,12 @@ $(function() {
 	});
 
 	//prevent default behaviour of element form items
-	$(document).on('click', '.element > input, .element > textarea, .element > label', function(e) {
+	$(document).on('click', '.element > input, .element > textarea, .element > label', function (e) {
 		e.preventDefault();
 	});
 
 	// random bug makes options modal load when certain components are clicked. prevent this!
-	$(".component > input, .component > textarea, .component > label, .checkbox, .radio").click(function(e) {
+	$(".component > input, .component > textarea, .component > label, .checkbox, .radio").click(function (e) {
 		e.preventDefault();
 		e.stopPropagation();
 	});
@@ -617,25 +689,25 @@ $(function() {
 	// the form editor is a droppable area that accepts components,
 	// converts them to elements and makes them sortable
 	$("#content")
-	.droppable({
-		accept: '.component',
-		hoverClass: 'content-hover',
-		drop: function(e, ui) {
-			form_builder.addComponent(ui.draggable);
-		}
-	})
-	.sortable({
-		placeholder: "element-placeholder",
-		start: function(e, ui) {
-			ui.item.popover('hide');
-		}
-	})
-	.disableSelection();
+		.droppable({
+			accept: '.component',
+			hoverClass: 'content-hover',
+			drop: function (e, ui) {
+				form_builder.addComponent(ui.draggable);
+			}
+		})
+		.sortable({
+			placeholder: "element-placeholder",
+			start: function (e, ui) {
+				ui.item.popover('hide');
+			}
+		})
+		.disableSelection();
 
 	// the form can also be given a title by clicking the legend at the top
 	// as this is not a component, do the necessary leg work and show the options
 	// modal accordingly
-	$("#content_form_name").click(function() {
+	$("#content_form_name").click(function () {
 		var $modal = $("#options_modal"),
 			content = $modal.find('.modal-body'),
 			type = 'title',
@@ -667,8 +739,8 @@ $(function() {
 	// hack to sort random bug with codemirror & bootstrap tabs not playing nicely.
 	// adding a refresh after 1ms seems to sort out an issue where the source code
 	// box does not display until user starts typing something
-	$("a[href=#source-tab]").click(function() {
-		setTimeout(function() {
+	$("a[href=#source-tab]").click(function () {
+		setTimeout(function () {
 			form_builder.updateSource();
 			source.refresh();
 		}, 1);

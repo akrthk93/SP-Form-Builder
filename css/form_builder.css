@@ -1,3 +1,12 @@
+.navbar {
+    width: auto;
+    background-color:rgba(0, 114, 198, 1);
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
 /* FORM CONTENT BOX */
 #content {
 	border: 1px solid #444;
@@ -72,6 +81,10 @@ input[type=text] {
 	background: #d9edf7;
 	min-height: 50px;
 	opacity: 0.5;
+}
+
+.control-label {
+	font-weight: bold;
 }
 
 /* OPTION BOXES */
