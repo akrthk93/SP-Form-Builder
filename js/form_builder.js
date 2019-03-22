@@ -151,6 +151,7 @@ $(function () {
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+				$(this.prefix + 'required').val();
 			},
 
 			// set text options
@@ -158,14 +159,15 @@ $(function () {
 				var el = form_builder.getElement(),
 					input = el.find('input[type=text]'),
 					label = el.find('label'),
-					name = form_builder.cleanName($(this.prefix + 'name').val());
+					name = form_builder.cleanName($(this.prefix + 'name').val()),
+					required = el.find('required');
 
 				input.attr('name', name);
 
 				label.text($(this.prefix + 'label').val()).attr('for', name);
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
-				// console.log($(this.prefix + 'required').val());
+				console.log(required);
 			}
 		},
 
