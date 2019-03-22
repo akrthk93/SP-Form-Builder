@@ -1,15 +1,28 @@
-.navbar {
-    width: auto;
-    background-color:rgba(0, 114, 198, 1);
+body {
+	background-color: rgba(222, 233, 241, 1);
 }
 
-.navbar-default .navbar-brand {
-    color: white;
+.navbar {
+	background-color:rgba(0, 114, 198, 1);
+	padding: 15px 0px 15px 20px;;
+}
+
+.navbar-brand {
+	font-size: 24px;
+	color: white;
+}
+
+.row-fluid .span6 {
+	padding: 0px 30px 0px 30px;
+    background-color: #fff;
+    border-radius: 5px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	/* width: 500px; */
 }
 
 /* FORM CONTENT BOX */
 #content {
-	border: 1px solid #444;
+	/* border: 1px solid #444; */
 	border-radius: 4px;
 	padding: 10px 20px;
 }
@@ -83,9 +96,19 @@ input[type=text] {
 	opacity: 0.5;
 }
 
-.control-label {
+.form-horizontal .control-label {
 	font-weight: bold;
+	/* text-align: left; */
 }
+
+.form-horizontal .control-group {
+    margin-bottom: 0px;
+}
+
+/* .control-group.required.component .control-label:after {
+	content: "*";
+	color: red;
+} */
 
 /* OPTION BOXES */
 .options {

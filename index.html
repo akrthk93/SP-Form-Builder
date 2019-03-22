@@ -3,7 +3,6 @@
 <head>
 	<title>Form Builder</title>
 
-	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="css/codemirror.css" rel="stylesheet">
@@ -14,7 +13,6 @@
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
 	<script src="js/form_builder.js"></script>
@@ -28,59 +26,20 @@
 </head>
 
 <body>
-	<!-- Navbar with brand, column options and view HTML btn -->
-	<nav class="navbar navbar-default navbar-fixed" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">SharePoint</a>
-		</div>
-		<form class="navbar-form navbar-left">
-			<div class="form-group">
-				<select class="form-control" id="n-columns">
-					<option value="1">1 Column</option>
-					<option value="2">2 Columns</option>
-				</select>
-			</div>
-			<button type="submit" class="btn btn-primary" data-clipboard-text="testing" id="copy-to-clipboard">View
-				HTML</button>
-		</form>
+	<nav class="navbar">
+		<a href="#" class="navbar-brand">SharePoint</a>
 	</nav>
+
 	<div class="row-fluid">
 		<div class="span10 offset1">
 			<div class="row-fluid">
-				<div class="span6">
-					<h1>Form Builder</h1>
-					<hr>
-					<div class="tabbable">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#editor-tab" data-toggle="tab">Builder</a></li>
-							<li><a href="#source-tab" data-toggle="tab">Source</a></li>
-						</ul>
-
-						<div class="tab-content">
-							<div class="tab-pane active" id="editor-tab">
-								<form id="content" class="form-horizontal">
-									<fieldset id="content_form_name">
-										<legend>Form Name</legend>
-									</fieldset>
-								</form>
-							</div>
-
-							<div class="tab-pane" id="source-tab">
-								<textarea id="source"></textarea>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="span6">
-					<h1>Components</h1>
-					<hr>
+				<div class="span6" id="components">
+					<h3>Components</h3>
 					<div id="components-container" class="form-horizontal">
-						<div class="control-group component" data-type="text">
+						<div class="control-group required component" data-type="text">
 							<label class="control-label" for="text_input">Text Input</label>
 							<div class="controls">
-								<input type="text" name="" id="text_input" placeholder="For single line input">
+								<input type="text" name="" id="text_input" placeholder="For single line input" required="true">
 							</div>
 						</div>
 
@@ -166,8 +125,7 @@
 						<div class="control-group component" data-type="static_text">
 							<label class="control-label">Plain Text<br></label>
 							<div class="controls" style="display: block;
-							font: 1rem 'Fira Sans', sans-serif; padding-top: 10px;">You can use this component to display any amount of
-								plain text that is not editable by the user.
+							font: 1rem 'Fira Sans', sans-serif; padding-top: 10px;">Text that is not editable by the user.
 							</div>
 						</div>
 
@@ -176,8 +134,7 @@
 							<div class="controls">
 								<label class="checkbox" for="checkbox_text">
 									<input type="checkbox" name="checkbox" id="checkbox_text">
-									You can use this component to obtain consent to your Terms and Conditions agreement
-									(or any other agreement that you present to users).
+									Check this box to proceed.
 								</label>
 							</div>
 						</div>
@@ -186,6 +143,31 @@
 							<button type="submit" class="btn btn-primary">Save changes</button>
 							<button type="button" class="btn"
 								onclick="javascript:window.history.back();">Cancel</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="span6" id="form-builder">
+					<h1>Form Builder</h1>
+					<hr>
+					<div class="tabbable">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#editor-tab" data-toggle="tab">Builder</a></li>
+							<li><a href="#source-tab" data-toggle="tab">Source</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div class="tab-pane active" id="editor-tab">
+								<form id="content" class="form-horizontal">
+									<fieldset id="content_form_name">
+										<legend>Form Name</legend>
+									</fieldset>
+								</form>
+							</div>
+
+							<div class="tab-pane" id="source-tab">
+								<textarea id="source"></textarea>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -221,13 +203,6 @@
 	<!-- Text Options -->
 	<div class="options options-text form-horizontal">
 		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_text_name" placeholder="Name">
-			</div>
-		</div>
-
-		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_text_label" placeholder="Label">
@@ -240,17 +215,20 @@
 				<input type="text" class="options_text_placeholder" placeholder="Placeholder">
 			</div>
 		</div>
+		
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<select class="options_text_required" id="select_required">
+					<option>Yes</option>
+					<option>No</option>
+				</select>
+			</div>
+		</div>
 	</div>
 
 	<!-- Textarea Options -->
 	<div class="options options-textarea form-horizontal">
-		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_textarea_name" placeholder="Name">
-			</div>
-		</div>
-
 		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
@@ -268,13 +246,6 @@
 
 	<!-- Select - Basic Options -->
 	<div class="options options-select_basic form-horizontal">
-		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_select_basic_name" placeholder="Name">
-			</div>
-		</div>
-
 		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
@@ -296,13 +267,6 @@
 	<!-- Select - Multiple Options -->
 	<div class="options options-select_multiple form-horizontal">
 		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_select_multiple_name" placeholder="Name">
-			</div>
-		</div>
-
-		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_select_multiple_label" placeholder="Label">
@@ -322,13 +286,6 @@
 
 	<!-- Checkbox Options -->
 	<div class="options options-checkbox form-horizontal">
-		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_checkbox_name" placeholder="Name">
-			</div>
-		</div>
-
 		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
@@ -350,13 +307,6 @@
 	<!-- Radio Options -->
 	<div class="options options-radio form-horizontal">
 		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_radio_name" placeholder="Name">
-			</div>
-		</div>
-
-		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_radio_label" placeholder="Label">
@@ -377,13 +327,6 @@
 	<!-- Date Options -->
 	<div class="options options-date form-horizontal">
 		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_date_name" placeholder="Name">
-			</div>
-		</div>
-
-		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_date_label" placeholder="Label">
@@ -393,13 +336,6 @@
 
 	<!-- File Input Options -->
 	<div class="options options-file form-horizontal">
-		<div class="control-group">
-			<label class="control-label">Name</label>
-			<div class="controls">
-				<input type="text" class="options_file_name" placeholder="Name">
-			</div>
-		</div>
-
 		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
@@ -421,9 +357,6 @@
 			<label class="control-label">Text</label>
 			<div class="controls">
 				<textarea class="options_static_text_text" style="width:100%;" rows="15" placeholder="Text"></textarea>
-				<span class="help-block">
-					Enter text here (only editable by form creators).
-				</span>
 			</div>
 		</div>
 	</div>
