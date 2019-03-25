@@ -20,8 +20,9 @@ h3 {
 }
 
 .navbar {
-	background-color:rgba(0, 114, 198, 1);
-	padding: 15px 0px 15px 20px;;
+	background-color: rgba(0, 114, 198, 1);
+	padding: 15px 0px 15px 20px;
+	;
 }
 
 .navbar-brand {
@@ -35,10 +36,16 @@ h3 {
 	margin-left: 10px;
 }
 
+a:hover, a:active, a:visited, a:focus {
+	color: white;
+	background-color: rgba(0, 114, 198, 1);
+	text-decoration:none;
+}
+
 .row-fluid .span5, .span6 {
 	padding: 0px 30px 0px 30px;
-    background-color: #fff;
-    border-radius: 5px;
+	background-color: #fff;
+	border-radius: 5px;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 	height: 800px;
 	margin-top: 20px;
@@ -49,6 +56,7 @@ h3 {
 } */
 
 /* FORM CONTENT BOX */
+
 #content {
 	/* border: 1px solid #444; */
 	border-radius: 4px;
@@ -84,11 +92,13 @@ h3 {
 }
 
 /* RANDOM BOOTSTAP FIX BECAUSE INPUT HEIGHT IS SET AT 30px ?!?! */
+
 input[type=text] {
 	height: auto;
 }
 
 /* COMPONENTS */
+
 .component {
 	cursor: move;
 	padding: 10px;
@@ -108,6 +118,7 @@ input[type=text] {
 }
 
 /* ELEMENTS */
+
 .element {
 	cursor: move;
 	padding: 10px;
@@ -155,18 +166,22 @@ input[type=text] {
 } */
 
 /* OPTION BOXES */
+
 .options {
 	display: none;
 }
 
-label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
+.options_select_basic_options, .options_checkbox_options, .options_radio_options, .options_static_text_text {
+	height: 100px;
 }
 
-input,
 label {
-    margin: .4rem 0;
+	display: block;
+	font: 1rem 'Fira Sans', sans-serif;
+}
+
+input, label {
+	margin: .4rem 0;
 }
 
 #date {
