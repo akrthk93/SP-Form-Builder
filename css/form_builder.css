@@ -29,7 +29,13 @@ h3 {
 	color: white;
 }
 
-.row-fluid .span6 {
+.navbar-text {
+	font-size: 18px;
+	color: white;
+	margin-left: 10px;
+}
+
+.row-fluid .span5, .span6 {
 	padding: 0px 30px 0px 30px;
     background-color: #fff;
     border-radius: 5px;
@@ -37,6 +43,10 @@ h3 {
 	height: 800px;
 	margin-top: 20px;
 }
+
+/* .row-fluid .span6 {
+	margin-left: 40px;
+} */
 
 /* FORM CONTENT BOX */
 #content {
