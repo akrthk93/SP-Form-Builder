@@ -142,17 +142,19 @@ $(document).ready(function () {
 		// text input options
 		text: {
 
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_text_',
 
 			// get text options
 			get: function () {
 				var el = form_builder.getElement();
-				// el refers to draggable component that is now an element
-				console.log(el);
+
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set text options
@@ -160,24 +162,34 @@ $(document).ready(function () {
 				var el = form_builder.getElement(),
 					input = el.find('input[type=text]'),
 					label = el.find('label'),
-					checkbox = el.find('input[type=checkbox]'),
 					name = form_builder.cleanName($(this.prefix + 'name').val());
-
-				// el refers to draggable component that is now an element
-				console.log(el);
-				// stopped here
-				console.log(checkbox.value);
 
 				input.attr('name', name);
 				
 				label.text($(this.prefix + 'label').val()).attr('for', name);
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
+
+				var checkbox = checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					input.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					input.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 
 		// textarea options
 		textarea: {
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_textarea_',
 
@@ -188,6 +200,7 @@ $(document).ready(function () {
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'placeholder').val(el.find('textarea').attr('placeholder'));
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set textarea options
@@ -199,11 +212,27 @@ $(document).ready(function () {
 				textarea.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
 				label.text($(this.prefix + 'label').val());
 				textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
+
+				var checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					textarea.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					textarea.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 
 		// basic select box options
 		select_basic: {
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_select_basic_',
 
@@ -217,17 +246,19 @@ $(document).ready(function () {
 				el.find('select > option').each(function (key, val) {
 					// if value and display text are equal
 					// dont bother showing value
-					var val_and_split = form_builder.cleanName($(val).text()) == $(val).val() ?
-						'' :
-						($(val).val() + split);
+					// var val_and_split = form_builder.cleanName($(val).text()) == $(val).val() ?
+					// 	'' :
+					// 	($(val).val() + split);
 
 					// add option to list
-					list_options += val_and_split + $(val).text() + "\n";
+					// list_options += val_and_split + $(val).text() + "\n";
+					list_options += $(val).text() + "\n";
 				});
 
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'options').val(list_options);
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set basic select options
@@ -263,75 +294,27 @@ $(document).ready(function () {
 				select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
 				label.text($(this.prefix + 'label').val());
 				select.html(list_options);
-			}
-		},
-
-		// multi select box options
-		select_multiple: {
-			// options class prefix
-			prefix: '.options_select_multiple_',
-
-			// get multiple select options
-			get: function () {
-				var el = form_builder.getElement(),
-					list_options = '',
-					split = form_builder.delimeter;
-
-				// loop through each select option
-				el.find('select > option').each(function (key, val) {
-					// if value and display text are equal
-					// dont bother showing value
-					var val_and_split = form_builder.cleanName($(val).text()) == $(val).val() ?
-						'' :
-						($(val).val() + split);
-
-					// add option to list
-					list_options += val_and_split + $(val).text() + "\n";
-				});
-
-				$(this.prefix + 'name').val('');
-				$(this.prefix + 'label').val(el.find('label').text());
-				$(this.prefix + 'options').val(list_options);
-			},
-
-			// set multiple select options
-			set: function () {
-				var el = form_builder.getElement(),
-					select = el.find('select'),
-					label = el.find('label'),
-					split = form_builder.delimeter,
-
-					// textarea options
-					options_blob = $(this.prefix + 'options').val(),
-
-					// split options by line break
-					select_options = options_blob.replace(/\r\n/, "\n").split("\n"),
-
-					// options buffer
-					list_options = "\n";
-
-				// loop through each option
-				$.each(select_options, function (key, val) {
-					if (val.length > 0) {
-						// if delimiter found, split val into array value -> display
-						if (val.indexOf(split) !== -1) {
-							var opt = val.split(split);
-
-							list_options += "<option value=\"" + opt[0] + "\">" + opt[1] + "</option>\n";
-						} else {
-							list_options += "<option value=\"" + form_builder.cleanName(val) + "\">" + val + "</option>\n";
-						}
-					}
-				});
-
-				select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
-				label.text($(this.prefix + 'label').val());
-				select.html(list_options);
+				
+				var checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					select.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					select.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 
 		// checkbox options
 		checkbox: {
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_checkbox_',
 
@@ -354,6 +337,7 @@ $(document).ready(function () {
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label:first').text());
 				$(this.prefix + 'options').val(list_options);
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set checkbox options
@@ -369,7 +353,8 @@ $(document).ready(function () {
 					checkbox_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
 					// element name
-					name = form_builder.cleanName($(this.prefix + 'name').val()),
+					// name = form_builder.cleanName($(this.prefix + 'name').val()),
+					name = 'checkbox',
 
 					// options buffer
 					list_options = "\n";
@@ -386,14 +371,14 @@ $(document).ready(function () {
 							list_options += "<label class=\"checkbox\" for=\"" + id + "\">\n" +
 								"<input type=\"checkbox\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + opt[0] + "\">\n" +
+								"value=\"" + opt[0] + "\"required>\n" +
 								opt[1] + "\n" +
 								"</label>\n";
 						} else {
 							list_options += "<label class=\"checkbox\" for=\"" + id + "\">\n" +
 								"<input type=\"checkbox\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + form_builder.cleanName(val) + "\">\n" +
+								"value=\"" + form_builder.cleanName(val) + "\"required>\n" +
 								val + "\n" +
 								"</label>\n";
 						}
@@ -402,11 +387,27 @@ $(document).ready(function () {
 
 				label.text($(this.prefix + 'label').val());
 				el.find('.controls').html(list_options);
+
+				var checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					// select.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					// select.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 
 		// radio buttons options
 		radio: {
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_radio_',
 
@@ -429,6 +430,7 @@ $(document).ready(function () {
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label:first').text());
 				$(this.prefix + 'options').val(list_options);
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set radio button options
@@ -444,7 +446,8 @@ $(document).ready(function () {
 					radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
 					// element name
-					name = form_builder.cleanName($(this.prefix + 'name').val()),
+					// name = form_builder.cleanName($(this.prefix + 'name').val()),
+					name = 'radio',
 
 					// options buffer
 					list_options = "\n";
@@ -461,14 +464,14 @@ $(document).ready(function () {
 							list_options += "<label class=\"radio\" for=\"" + id + "\">\n" +
 								"<input type=\"radio\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + opt[0] + "\">\n" +
+								"value=\"" + opt[0] + "\"required>\n" +
 								opt[1] + "\n" +
 								"</label>\n";
 						} else {
 							list_options += "<label class=\"radio\" for=\"" + id + "\">\n" +
 								"<input type=\"radio\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + form_builder.cleanName(val) + "\">\n" +
+								"value=\"" + form_builder.cleanName(val) + "\"required>\n" +
 								val + "\n" +
 								"</label>\n";
 						}
@@ -477,11 +480,27 @@ $(document).ready(function () {
 
 				label.text($(this.prefix + 'label').val());
 				el.find('.controls').html(list_options);
+
+				var checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					// select.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					// select.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 
 		// date options
 		date: {
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_date_',
 
@@ -492,12 +511,13 @@ $(document).ready(function () {
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set date options
 			set: function () {
 				var el = form_builder.getElement(),
-					input = el.find('input[type=text]'),
+					input = el.find('input[type=date]'),
 					label = el.find('label'),
 					name = form_builder.cleanName($(this.prefix + 'name').val());
 
@@ -506,11 +526,27 @@ $(document).ready(function () {
 				label.text($(this.prefix + 'label').val()).attr('for', name);
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
+
+				var checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					input.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					input.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 
 		// file options
 		file: {
+			// global 'variable' to hold if field is required
+			needed: false,
 			// options class prefix
 			prefix: '.options_file_',
 
@@ -521,12 +557,13 @@ $(document).ready(function () {
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
+				$(this.prefix + 'required').prop('checked', this.needed);
 			},
 
 			// set file options
 			set: function () {
 				var el = form_builder.getElement(),
-					input = el.find('input[type=text]'),
+					input = el.find('input[type=file]'),
 					label = el.find('label'),
 					name = form_builder.cleanName($(this.prefix + 'name').val());
 
@@ -535,6 +572,20 @@ $(document).ready(function () {
 				label.text($(this.prefix + 'label').val()).attr('for', name);
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
+
+				var checkbox = $(this.prefix + 'required');
+				// looks at checkbox to toggle required
+				if (!checkbox.prop('checked')) {
+					console.log('unchecked');
+					this.needed = false;
+					input.attr('required', false);
+					label.removeClass('required');
+				} else {
+					console.log('checked');
+					this.needed = true;
+					input.attr('required', true);
+					label.addClass('required');
+				}
 			}
 		},
 

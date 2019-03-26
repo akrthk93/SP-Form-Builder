@@ -41,7 +41,7 @@
 						<h3>Components</h3>
 					</div>
 					<div id="components-container" class="form-horizontal">
-						<div class="control-group required component" data-type="text">
+						<div class="control-group component" data-type="text">
 							<label class="control-label" for="text_input">Text Input</label>
 							<div class="controls">
 								<input type="text" name="" id="text_input" placeholder="For single line input">
@@ -59,23 +59,12 @@
 							<label class="control-label" for="select_basic">Dropdown List</label>
 							<div class="controls">
 								<select name="" id="select_basic">
-									<option value="1">Option 1</option>
-									<option value="2">Option 2</option>
-									<option value="3">Option 3</option>
+									<option>Option 1</option>
+									<option>Option 2</option>
+									<option>Option 3</option>
 								</select>
 							</div>
 						</div>
-
-						<!-- <div class="control-group component" data-type="select_multiple">
-								<label class="control-label" for="select_multiple">Select - Multiple</label>
-								<div class="controls">
-									<select name="" id="select_multiple" multiple="multiple" size="3">
-										<option value="1">Option 1</option>
-										<option value="2">Option 2</option>
-										<option value="3">Option 3</option>
-									</select>
-								</div>
-							</div> -->
 
 						<div class="control-group component" data-type="checkbox">
 							<label class="control-label">Checkboxes<br> (Multiple Options)</label>
@@ -226,7 +215,7 @@
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_text_required">
-					<input type="checkbox" class="options_text_required" id="checkbox_text_required">
+					<input type="checkbox" class="options_text_required">
 				</label>
 			</div>
 		</div>
@@ -245,6 +234,15 @@
 			<label class="control-label">Placeholder</label>
 			<div class="controls">
 				<input type="text" class="options_textarea_placeholder" placeholder="Placeholder">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_textarea_required">
+					<input type="checkbox" class="options_textarea_required">
+				</label>
 			</div>
 		</div>
 	</div>
@@ -267,6 +265,15 @@
 				</span>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_select_basic_required">
+					<input type="checkbox" class="options_select_basic_required">
+				</label>
+			</div>
+		</div>
 	</div>
 
 	<!-- Select - Multiple Options -->
@@ -285,6 +292,15 @@
 				<span class="help-block">
 					Enter each option on a new line.
 				</span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_select_multiple_required">
+					<input type="checkbox" class="options_select_multiple_required">
+				</label>
 			</div>
 		</div>
 	</div>
@@ -307,6 +323,15 @@
 				</span>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_checkbox_required">
+					<input type="checkbox" class="options_checkbox_required">
+				</label>
+			</div>
+		</div>
 	</div>
 
 	<!-- Radio Options -->
@@ -327,6 +352,15 @@
 				</span>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_radio_required">
+					<input type="checkbox" class="options_radio_required">
+				</label>
+			</div>
+		</div>
 	</div>
 
 	<!-- Date Options -->
@@ -337,6 +371,15 @@
 				<input type="text" class="options_date_label" placeholder="Label">
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_date_required">
+					<input type="checkbox" class="options_date_required">
+				</label>
+			</div>
+		</div>
 	</div>
 
 	<!-- File Input Options -->
@@ -345,6 +388,15 @@
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_file_label" placeholder="Label">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<label for="checkbox_file_required">
+					<input type="checkbox" class="options_file_required">
+				</label>
 			</div>
 		</div>
 	</div>

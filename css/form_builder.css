@@ -39,7 +39,7 @@ h3 {
 a:hover, a:active, a:visited, a:focus {
 	color: white;
 	background-color: rgba(0, 114, 198, 1);
-	text-decoration:none;
+	text-decoration: none;
 }
 
 .row-fluid .span5, .span6 {
@@ -178,6 +178,11 @@ input[type=text] {
 label {
 	display: block;
 	font: 1rem 'Fira Sans', sans-serif;
+}
+
+.required::after {
+	content: "*";
+	color: red;
 }
 
 input, label {
