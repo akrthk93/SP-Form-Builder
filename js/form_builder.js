@@ -41,7 +41,7 @@
 // 4. When options are saved
 //		a. Call form_builder.type.set() to save options
 
-$(function () {
+$(document).ready(function () {
 	// element options object
 	var form_builder = {
 		// selected element reference
@@ -141,17 +141,18 @@ $(function () {
 
 		// text input options
 		text: {
+
 			// options class prefix
 			prefix: '.options_text_',
 
 			// get text options
 			get: function () {
 				var el = form_builder.getElement();
-
+				// el refers to draggable component that is now an element
+				console.log(el);
 				$(this.prefix + 'name').val('');
 				$(this.prefix + 'label').val(el.find('label').text());
 				$(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
-				$(this.prefix + 'required').val();
 			},
 
 			// set text options
@@ -159,15 +160,19 @@ $(function () {
 				var el = form_builder.getElement(),
 					input = el.find('input[type=text]'),
 					label = el.find('label'),
-					name = form_builder.cleanName($(this.prefix + 'name').val()),
-					required = el.find('required');
+					checkbox = el.find('input[type=checkbox]'),
+					name = form_builder.cleanName($(this.prefix + 'name').val());
+
+				// el refers to draggable component that is now an element
+				console.log(el);
+				// stopped here
+				console.log(checkbox.value);
 
 				input.attr('name', name);
-
+				
 				label.text($(this.prefix + 'label').val()).attr('for', name);
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
-				console.log(required);
 			}
 		},
 
@@ -651,20 +656,6 @@ $(function () {
 		// show options modal
 		$modal.modal('show');
 	});
-
-	// // Get the input field
-	// var input = document.getElementById("options_modal");
-
-	// // Execute a function when the user releases a key on the keyboard
-	// input.addEventListener("keyup", function (event) {
-	// 	// Number 13 is the "Enter" key on the keyboard
-	// 	if (event.keyCode === 13) {
-	// 		// Cancel the default action, if needed
-	// 		event.preventDefault();
-	// 		// Trigger the button element with a click
-	// 		$("#save_options").click();
-	// 	}
-	// });
 
 	// options modal save button
 	$("#save_options").click(function () {

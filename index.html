@@ -16,8 +16,6 @@
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
-	<script src="js/form_builder.js"></script>
-
 	<script src="js/codemirror.js"></script>
 	<script src="js/mode/xml/xml.js"></script>
 	<script src="js/mode/javascript/javascript.js"></script>
@@ -46,7 +44,7 @@
 						<div class="control-group required component" data-type="text">
 							<label class="control-label" for="text_input">Text Input</label>
 							<div class="controls">
-								<input type="text" name="" id="text_input" placeholder="For single line input" required="true">
+								<input type="text" name="" id="text_input" placeholder="For single line input">
 							</div>
 						</div>
 
@@ -224,15 +222,14 @@
 			</div>
 		</div>
 		
-		<!-- <div class="control-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
-				<select class="options_text_required" id="select_required">
-					<option>Yes</option>
-					<option>No</option>
-				</select>
+				<label for="checkbox_text_required">
+					<input type="checkbox" class="options_text_required" id="checkbox_text_required">
+				</label>
 			</div>
-		</div> -->
+		</div>
 	</div>
 
 	<!-- Textarea Options -->
@@ -406,6 +403,7 @@
 		</div>
 	</div>
 
+	<script src="js/form_builder.js"></script>
 </body>
 
 </html>
