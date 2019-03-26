@@ -51,6 +51,11 @@ a:hover, a:active, a:visited, a:focus {
 	margin-top: 20px;
 }
 
+#form-builder {
+	min-height: 800px;
+	height: auto;
+}
+
 /* .row-fluid .span6 {
 	margin-left: 40px;
 } */
@@ -62,7 +67,8 @@ a:hover, a:active, a:visited, a:focus {
 	border-radius: 4px;
 	padding: 10px 20px;
 	margin-bottom: 0px;
-	height: 650px;
+	min-height: 650px;
+	height: auto;
 }
 
 #content_form_name {
@@ -135,6 +141,7 @@ input[type=text] {
 	color: #3a87ad;
 	background: #d9edf7;
 	min-height: 50px;
+	height: auto;
 	opacity: 0.5;
 }
 
