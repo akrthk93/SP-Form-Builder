@@ -167,6 +167,17 @@ $(document).ready(function () {
 				input.attr('name', name);
 				
 				label.text($(this.prefix + 'label').val()).attr('for', name);
+				
+				// If label is empty, field aligns to the left
+				// var holding;
+				// console.log(label.text())
+				// if (label.text() === "") {
+				// 	holding = label.detach();
+				// 	el.find('.controls').css("margin-left", "0px");
+				// } else {
+				// 	holding.append(el.find('.controls'))
+				// 	el.find('.controls').css("margin-left", "180px");
+				// }
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
 
@@ -371,14 +382,14 @@ $(document).ready(function () {
 							list_options += "<label class=\"checkbox\" for=\"" + id + "\">\n" +
 								"<input type=\"checkbox\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + opt[0] + "\"required>\n" +
+								"value=\"" + opt[0] + "\">\n" +
 								opt[1] + "\n" +
 								"</label>\n";
 						} else {
 							list_options += "<label class=\"checkbox\" for=\"" + id + "\">\n" +
 								"<input type=\"checkbox\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + form_builder.cleanName(val) + "\"required>\n" +
+								"value=\"" + form_builder.cleanName(val) + "\">\n" +
 								val + "\n" +
 								"</label>\n";
 						}
@@ -388,17 +399,18 @@ $(document).ready(function () {
 				label.text($(this.prefix + 'label').val());
 				el.find('.controls').html(list_options);
 
+				var select = el.find('input[type=checkbox]');
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
 					console.log('unchecked');
 					this.needed = false;
-					// select.attr('required', false);
+					select.attr('required', false);
 					label.removeClass('required');
 				} else {
 					console.log('checked');
 					this.needed = true;
-					// select.attr('required', true);
+					select.attr('required', true);
 					label.addClass('required');
 				}
 			}
@@ -464,14 +476,14 @@ $(document).ready(function () {
 							list_options += "<label class=\"radio\" for=\"" + id + "\">\n" +
 								"<input type=\"radio\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + opt[0] + "\"required>\n" +
+								"value=\"" + opt[0] + "\">\n" +
 								opt[1] + "\n" +
 								"</label>\n";
 						} else {
 							list_options += "<label class=\"radio\" for=\"" + id + "\">\n" +
 								"<input type=\"radio\" name=\"" + name + "\" " +
 								"id=\"" + id + "\" " +
-								"value=\"" + form_builder.cleanName(val) + "\"required>\n" +
+								"value=\"" + form_builder.cleanName(val) + "\">\n" +
 								val + "\n" +
 								"</label>\n";
 						}
@@ -481,17 +493,18 @@ $(document).ready(function () {
 				label.text($(this.prefix + 'label').val());
 				el.find('.controls').html(list_options);
 
+				var select = el.find('input[type=radio]');
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
 					console.log('unchecked');
 					this.needed = false;
-					// select.attr('required', false);
+					select.attr('required', false);
 					label.removeClass('required');
 				} else {
 					console.log('checked');
 					this.needed = true;
-					// select.attr('required', true);
+					select.attr('required', true);
 					label.addClass('required');
 				}
 			}
@@ -729,6 +742,24 @@ $(document).ready(function () {
 	$(".component > input, .component > textarea, .component > label, .checkbox, .radio").click(function (e) {
 		e.preventDefault();
 		e.stopPropagation();
+	});
+
+	// changing form to two columns
+	$("#n-columns").on("change", function () {
+		var v = $(this).val();
+		if (v === "1") {
+			var $col = $('.form-body .col-md-12').toggle(true);
+			$('.form-body .col-md-6 .draggable').each(function (i, el) {
+				$(this).remove().appendTo($col);
+			})
+			$('.form-body .col-md-6').toggle(false);
+		} else {
+			var $col = $('.form-body .col-md-6').toggle(true);
+			$(".form-body .col-md-12 .draggable").each(function (i, el) {
+				$(this).remove().appendTo(i % 2 ? $col[1] : $col[0]);
+			});
+			$('.form-body .col-md-12').toggle(false);
+		}
 	});
 
 	// the form editor is a droppable area that accepts components,

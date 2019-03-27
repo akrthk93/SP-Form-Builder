@@ -25,12 +25,19 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed" role="navigation">
 		<a href="#" class="navbar-brand">SharePoint</a>
 		<a href="#" class="navbar-text">Help</a>
-		<!-- <div class="btn-nav" style="display: inline-flex;">
-			<button class="btn navbar-btn" type="submit">Help</button>
-		</div> -->
+		<!-- <form class="navbar-form navbar-left">
+			<div class="form-group">
+				<select class="form-control" id="n-columns">
+					<option value="1">1 Column</option>
+					<option value="2">2 Columns</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary" data-clipboard-text="testing" id="copy-to-clipboard">View
+				HTML</button>
+		</form> -->
 	</nav>
 
 	<div class="row-fluid">
@@ -110,7 +117,7 @@
 						</div>
 
 						<div class="control-group component" data-type="file">
-							<label class="control-label" for="file-input">File Input</label>
+							<label class="control-label" for="file">File Input</label>
 							<div class="controls">
 								<input type="file" id="file" name="file">
 							</div>
@@ -134,13 +141,20 @@
 						</div>
 
 						<div class="form-actions component" data-type="submit">
+							<label class="control-label">Submit Button</label>
+							<div class="controls"><button type="submit" class="btn btn-primary">Submit</button>
+							<button type="button" class="btn"
+							onclick="javascript:window.history.back();">Cancel</button></div>
+						</div>
+						<!-- <div class="form-actions component" data-type="submit">
 							<button type="submit" class="btn btn-primary">Submit</button>
 							<button type="button" class="btn"
 								onclick="javascript:window.history.back();">Cancel</button>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
+				<!-- Form builder -->
 				<div class="span6" id="form-builder">
 					<div class="heading">
 						<h3>Form Builder</h3>
@@ -151,6 +165,7 @@
 							<li><a href="#source-tab" data-toggle="tab">Source</a></li>
 						</ul>
 
+						<!-- Content Area -->
 						<div class="tab-content">
 							<div class="tab-pane active" id="editor-tab">
 								<form id="content" class="form-horizontal">
