@@ -109,6 +109,7 @@ input[type=text] {
 	cursor: move;
 	padding: 10px;
 	border: 1px solid #fff;
+	display: inline-block;
 }
 
 .component:hover {
@@ -123,12 +124,17 @@ input[type=text] {
 	background: #FFF;
 }
 
+input, textarea, select {
+	width: auto;
+}
+
 /* ELEMENTS */
 
 .element {
 	cursor: move;
 	padding: 10px;
 	border: 1px solid #fff;
+	/* display: inline-block; */
 }
 
 .element:hover {
@@ -158,6 +164,10 @@ input[type=text] {
 	width: auto;
 }
 
+/* .modal-header {
+	cursor: move;
+} */
+
 .modal-body .control-group {
 	margin-bottom: 20px;
 }
@@ -165,6 +175,7 @@ input[type=text] {
 .form-horizontal .form-actions {
 	padding-left: 10px;
 	background-color: white;
+	margin: 0 0;
 }
 
 /* .control-group.required.component .control-label:after {
