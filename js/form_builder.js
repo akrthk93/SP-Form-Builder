@@ -173,10 +173,12 @@ $(document).ready(function () {
 				var checkbox = checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
 					this.needed = false;
 					input.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					input.attr('required', true);
 					label.addClass('required');
@@ -214,10 +216,12 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
 					this.needed = false;
 					textarea.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					textarea.attr('required', true);
 					label.addClass('required');
@@ -286,10 +290,12 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
 					this.needed = false;
 					select.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					select.attr('required', true);
 					label.addClass('required');
@@ -333,6 +339,7 @@ $(document).ready(function () {
 					// split options by line break
 					checkbox_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
+					// element name
 					name = 'checkbox',
 
 					// options buffer
@@ -371,10 +378,12 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
 					this.needed = false;
 					select.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					select.attr('required', true);
 					label.addClass('required');
@@ -418,6 +427,7 @@ $(document).ready(function () {
 					// split options by line break
 					radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
+					// element name
 					name = 'radio',
 
 					// options buffer
@@ -456,10 +466,12 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
 					this.needed = false;
 					select.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					select.attr('required', true);
 					label.addClass('required');
@@ -500,9 +512,12 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
+					this.needed = false;
 					input.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					input.attr('required', true);
 					label.addClass('required');
@@ -543,10 +558,12 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
+					// console.log('unchecked');
 					this.needed = false;
 					input.attr('required', false);
 					label.removeClass('required');
 				} else {
+					// console.log('checked');
 					this.needed = true;
 					input.attr('required', true);
 					label.addClass('required');
@@ -671,6 +688,10 @@ $(document).ready(function () {
 
 		// show options modal
 		$modal.modal('show');
+		// $modal.draggable({
+		// 	handle: ".modal-header"
+		// });
+	});
 
 	// options modal save button
 	$("#save_options").click(function () {
