@@ -56,10 +56,6 @@ a:hover, a:active, a:visited, a:focus {
 	height: auto;
 }
 
-/* .row-fluid .span6 {
-	margin-left: 40px;
-} */
-
 /* FORM CONTENT BOX */
 
 #content {
@@ -92,7 +88,6 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 #components-container {
-	/* border-left: 1px dashed rgb(212, 212, 212); */
 	padding: 10px 20px;
 	width: auto;
 }
@@ -134,7 +129,6 @@ input, textarea, select {
 	cursor: move;
 	padding: 10px;
 	border: 1px solid #fff;
-	/* display: inline-block; */
 }
 
 .element:hover {
@@ -164,10 +158,6 @@ input, textarea, select {
 	width: auto;
 }
 
-/* .modal-header {
-	cursor: move;
-} */
-
 .modal-body .control-group {
 	margin-bottom: 20px;
 }
@@ -177,11 +167,6 @@ input, textarea, select {
 	background-color: white;
 	margin: 0 0;
 }
-
-/* .control-group.required.component .control-label:after {
-	content: "*";
-	color: red;
-} */
 
 /* OPTION BOXES */
 

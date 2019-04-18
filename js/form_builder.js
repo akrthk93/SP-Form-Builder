@@ -167,33 +167,16 @@ $(document).ready(function () {
 				input.attr('name', name);
 				
 				label.text($(this.prefix + 'label').val()).attr('for', name);
-				
-				// If label is empty, field aligns to the left
-				// var holding;
-				// console.log(label.text());
-				// if (label.text() === "") {
-				// 	holding = label.hide();
-				// 	// el.find('.controls').css("margin-left", "0px");
-				// } else {
-				// 	console.log("entered else");
-				// 	// holding.appendTo(el.find('.controls'));
-				// 	// el.find('.controls').append(holding);
-				// 	// el.find('.controls').css("margin-left", "180px");
-				// 	// holding = null;
-				// 	label.show();
-				// }
 
 				input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
 
 				var checkbox = checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
 					this.needed = false;
 					input.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					input.attr('required', true);
 					label.addClass('required');
@@ -231,12 +214,10 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
 					this.needed = false;
 					textarea.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					textarea.attr('required', true);
 					label.addClass('required');
@@ -259,14 +240,6 @@ $(document).ready(function () {
 
 				// loop through each select option
 				el.find('select > option').each(function (key, val) {
-					// if value and display text are equal
-					// dont bother showing value
-					// var val_and_split = form_builder.cleanName($(val).text()) == $(val).val() ?
-					// 	'' :
-					// 	($(val).val() + split);
-
-					// add option to list
-					// list_options += val_and_split + $(val).text() + "\n";
 					list_options += $(val).text() + "\n";
 				});
 
@@ -313,12 +286,10 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
 					this.needed = false;
 					select.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					select.attr('required', true);
 					label.addClass('required');
@@ -341,12 +312,6 @@ $(document).ready(function () {
 
 				// loop through each select option
 				el.find('input[type=checkbox]').each(function (key, val) {
-					// if checkbox has value that isn't just "on", show it
-					// var val_and_split = $(this).val().length > 0 && $(this).val() !== 'on' ?
-					// 	$(this).val() + split :
-					// 	'';
-
-					// list_options += val_and_split + $(this).closest('label').text().trim() + "\n";
 					list_options += $(this).closest('label').text().trim() + "\n";
 				});
 
@@ -368,8 +333,6 @@ $(document).ready(function () {
 					// split options by line break
 					checkbox_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
-					// element name
-					// name = form_builder.cleanName($(this.prefix + 'name').val()),
 					name = 'checkbox',
 
 					// options buffer
@@ -408,12 +371,10 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
 					this.needed = false;
 					select.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					select.attr('required', true);
 					label.addClass('required');
@@ -436,12 +397,6 @@ $(document).ready(function () {
 
 				// loop through each select option
 				el.find('input[type=radio]').each(function (key, val) {
-					// if radio has value that isn't just "on", show it
-					// var val_and_split = $(this).val().length > 0 && $(this).val() !== 'on' ?
-					// 	$(this).val() + split :
-					// 	'';
-
-					// list_options += val_and_split + $(this).closest('label').text().trim() + "\n";
 					list_options += $(this).closest('label').text().trim() + "\n";
 				});
 
@@ -463,8 +418,6 @@ $(document).ready(function () {
 					// split options by line break
 					radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
-					// element name
-					// name = form_builder.cleanName($(this.prefix + 'name').val()),
 					name = 'radio',
 
 					// options buffer
@@ -503,12 +456,10 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
 					this.needed = false;
 					select.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					select.attr('required', true);
 					label.addClass('required');
@@ -549,12 +500,9 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
-					this.needed = false;
 					input.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					input.attr('required', true);
 					label.addClass('required');
@@ -595,12 +543,10 @@ $(document).ready(function () {
 				var checkbox = $(this.prefix + 'required');
 				// looks at checkbox to toggle required
 				if (!checkbox.prop('checked')) {
-					// console.log('unchecked');
 					this.needed = false;
 					input.attr('required', false);
 					label.removeClass('required');
 				} else {
-					// console.log('checked');
 					this.needed = true;
 					input.attr('required', true);
 					label.addClass('required');
@@ -725,10 +671,6 @@ $(document).ready(function () {
 
 		// show options modal
 		$modal.modal('show');
-		// $modal.draggable({
-		// 	handle: ".modal-header"
-		// });
-	});
 
 	// options modal save button
 	$("#save_options").click(function () {
