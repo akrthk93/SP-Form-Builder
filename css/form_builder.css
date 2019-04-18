@@ -87,6 +87,10 @@ a:hover, a:active, a:visited, a:focus {
 	border: 1px solid #d9edf7;
 }
 
+#components {
+	width: 550px;
+}
+
 #components-container {
 	padding: 10px 20px;
 	width: auto;
