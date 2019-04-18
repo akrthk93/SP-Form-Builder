@@ -2,7 +2,7 @@
 
 <head>
 	<title>SharePoint Form Builder</title>
-	<link rel="icon" href="sp-icon.png" type="image/png">
+	<!-- <link rel="icon" href="sp-icon.png" type="image/png"> -->
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -30,26 +30,27 @@
 	<div class="row-fluid">
 		<div class="span10 offset1">
 			<div class="row-fluid">
+					<div class="span1"></div>
 				<div class="span5" id="components">
 					<div class="heading">
 						<h3>Components</h3>
 					</div>
 					<div id="components-container" class="form-horizontal">
-						<div class="form-group component" data-type="text">
+						<div class="control-group component" data-type="text">
 							<label class="control-label" for="text_input">Text Input</label>
 							<div class="controls">
 								<input type="text" name="" id="text_input" placeholder="For single line input">
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="textarea">
+						<div class="control-group component" data-type="textarea">
 							<label class="control-label" for="textarea">Text Area</label>
 							<div class="controls">
 								<textarea name="" id="textarea" placeholder="For multiple line input"></textarea>
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="select_basic">
+						<div class="control-group component" data-type="select_basic">
 							<label class="control-label" for="select_basic">Dropdown List</label>
 							<div class="controls">
 								<select name="" id="select_basic">
@@ -60,7 +61,7 @@
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="checkbox">
+						<div class="control-group component" data-type="checkbox">
 							<label class="control-label">Checkboxes<br> (Multiple Options)</label>
 							<div class="controls">
 								<label class="checkbox" for="checkbox_1">
@@ -78,7 +79,7 @@
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="radio">
+						<div class="control-group component" data-type="radio">
 							<label class="control-label">Radio Buttons<br> (Single Option)</label>
 							<div class="controls">
 								<label class="radio" for="radio_1">
@@ -96,28 +97,28 @@
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="date">
+						<div class="control-group component" data-type="date">
 							<label class="control-label" for="date">Date Input</label>
 							<div class="controls">
 								<input type="date" id="date" name="Date">
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="file">
+						<div class="control-group component" data-type="file">
 							<label class="control-label" for="file">File Input</label>
 							<div class="controls">
 								<input type="file" id="file" name="file">
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="static_text">
+						<div class="control-group component" data-type="static_text">
 							<label class="control-label">Plain Text<br></label>
 							<div class="controls" style="display: block;
 							font: 1rem 'Fira Sans', sans-serif; padding-top: 10px;">Text that is not editable by the user.
 							</div>
 						</div>
 
-						<div class="form-group component" data-type="checkbox">
+						<div class="control-group component" data-type="checkbox">
 							<label class="control-label">Terms & Conditions</label>
 							<div class="controls">
 								<label class="checkbox" for="checkbox_text">
@@ -136,6 +137,7 @@
 					</div>
 				</div>
 
+				<!-- <div class="span1"></div> -->
 				<!-- Form builder -->
 				<div class="span6" id="form-builder">
 					<div class="heading">
@@ -150,11 +152,11 @@
 						<!-- Content Area -->
 						<div class="tab-content">
 							<div class="tab-pane active" id="editor-tab">
-								<form id="content" class="form-horizontal">
+								<div id="content" class="form-horizontal">
 									<fieldset id="content_form_name">
 										<legend>Form Name</legend>
 									</fieldset>
-								</form>
+								</div>
 							</div>
 
 							<div class="tab-pane" id="source-tab">
@@ -184,7 +186,7 @@
 
 	<!-- Title Options -->
 	<div class="options options-title form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Form Name</label>
 			<div class="controls">
 				<input type="text" class="options_title_name" placeholder="Form Name">
@@ -194,21 +196,21 @@
 
 	<!-- Text Options -->
 	<div class="options options-text form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_text_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Placeholder</label>
 			<div class="controls">
 				<input type="text" class="options_text_placeholder" placeholder="Placeholder">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_text_required">
@@ -220,21 +222,21 @@
 
 	<!-- Textarea Options -->
 	<div class="options options-textarea form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_textarea_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Placeholder</label>
 			<div class="controls">
 				<input type="text" class="options_textarea_placeholder" placeholder="Placeholder">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_textarea_required">
@@ -246,14 +248,14 @@
 
 	<!-- Select - Basic Options -->
 	<div class="options options-select_basic form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_select_basic_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Options</label>
 			<div class="controls">
 				<textarea class="options_select_basic_options" placeholder="Options"></textarea>
@@ -263,7 +265,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_select_basic_required">
@@ -275,14 +277,14 @@
 
 	<!-- Select - Multiple Options -->
 	<div class="options options-select_multiple form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_select_multiple_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Options</label>
 			<div class="controls">
 				<textarea class="options_select_multiple_options" placeholder="Options"></textarea>
@@ -292,7 +294,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_select_multiple_required">
@@ -304,14 +306,14 @@
 
 	<!-- Checkbox Options -->
 	<div class="options options-checkbox form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_checkbox_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Options</label>
 			<div class="controls">
 				<textarea class="options_checkbox_options" placeholder="Options"></textarea>
@@ -321,7 +323,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_checkbox_required">
@@ -333,14 +335,14 @@
 
 	<!-- Radio Options -->
 	<div class="options options-radio form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_radio_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Options</label>
 			<div class="controls">
 				<textarea class="options_radio_options" placeholder="Options"></textarea>
@@ -350,7 +352,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_radio_required">
@@ -362,14 +364,14 @@
 
 	<!-- Date Options -->
 	<div class="options options-date form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_date_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_date_required">
@@ -381,14 +383,14 @@
 
 	<!-- File Input Options -->
 	<div class="options options-file form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_file_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Required?</label>
 			<div class="controls">
 				<label for="checkbox_file_required">
@@ -400,14 +402,14 @@
 
 	<!-- Static Text Options -->
 	<div class="options options-static_text form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_static_text_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Text</label>
 			<div class="controls">
 				<textarea class="options_static_text_text" style="width:100%;" rows="15" placeholder="Text"></textarea>
@@ -417,14 +419,14 @@
 
 	<!-- Submit Options -->
 	<div class="options options-submit form-horizontal">
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Label</label>
 			<div class="controls">
 				<input type="text" class="options_submit_label" placeholder="Label">
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Show Cancel Button</label>
 			<div class="controls">
 				<select class="options_submit_show_cancel">
@@ -434,7 +436,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Form Method</label>
 			<div class="controls">
 				<select class="options_submit_method">
@@ -444,7 +446,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="control-group">
 			<label class="control-label">Form Action</label>
 			<div class="controls">
 				<input type="text" class="options_submit_action" placeholder="Name">
